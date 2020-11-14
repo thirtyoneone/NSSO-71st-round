@@ -1,0 +1,752 @@
+-------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\shanm\Desktop\Assignment2MSM.log
+  log type:  text
+ opened on:  23 Nov 2018, 17:21:46
+
+
+. doedit
+
+. do "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\Assignment2Stata.do"
+
+. *Changing Directory
+. cd "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\"
+C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen
+
+. 
+. *Creating the dta files from dct and data files
+. infile using "dct files\Level1.dct" if level==1
+
+dictionary using "data\R71252L01.txt" 
+{
+_column(1)       crs     %3s  "Centre, Round"
+_column(4)       fsu     %5f  "FSU serial number"
+_column(9)       rnd     %2f  "Round"
+_column(11)      sch     %3f  "Schedule Number" 
+_column(14)      sample  %1f  "Sample"   
+_column(15)      sector  %1f  "Sector"
+_column(16)      NSSreg  %3f  "NSS-Region"  
+_column(19)      dist    %2f  "District"
+_column(21)      stratum %3f  "Stratum" 
+_column(24)      substr  %2f  "Sub stratum"
+_column(26)      subrnd  %1f  "Sub round"
+_column(27)      subsmp  %1f  "Sub sample" 
+_column(28)      fodsub  %4f  "FOD sub region"
+_column(32)      hgsub   %1f  "Hamlet group/ Sub-block no." 
+_column(33)      sstr    %1f  "Second Stage Stratum no."
+_column(34)      hh      %2f  "Sample household no."
+_column(36)      level   %2f  "Level"
+_column(38)      filler  %5f  "Filler"
+_column(43)      infmt   %2f  "Informant's relation to head"
+_column(45)      resp    %1f  "Response code"
+_column(46)      svycod  %1f  "Survey code" 
+_column(47)      subscod %1f  "Reason for substitution"
+_column(48)      empcod1 %4f  "Employee code_one"
+_column(52)      empcod2 %4f  "Employee code_two"
+_column(56)      empcod3 %4f  "Employee code_three"
+_column(60)      dosur   %6f  "Date of Survey"
+_column(66)      dod     %6f  "Date of Despatch"
+_column(72)      tocan   %3f  "Time to canvass (minutes)"
+_column(75)      inves   %1f  "No. of investigators (FI/ ASO) in the team"
+_column(76)      rmk1    %1f  "Remarks in block 8/ 9_one"
+_column(77)      rmk2    %1f  "Remarks in block 8/ 9_two"
+_column(78)      rmke1   %1f  "Remarks elsewhere in Sch.one"
+_column(79)      rmke2   %1f  "Remarks elsewhere in Sch.two"
+
+
+_column(127)     nss     %3f  "NSS"
+_column(130)     nsc     %3f  "NSC"
+_column(133)     mlt     %10f "MLT"
+}
+
+'....' cannot be read as a number for fodsub[63349]
+(65926 observations read)
+
+. compress
+  crs was float now byte
+  rnd was float now byte
+  sch was float now int
+  sample was float now byte
+  sector was float now byte
+  NSSreg was float now int
+  dist was float now byte
+  stratum was float now int
+  substr was float now byte
+  subrnd was float now byte
+  subsmp was float now byte
+  fodsub was float now int
+  hgsub was float now byte
+  sstr was float now byte
+  hh was float now byte
+  level was float now byte
+  filler was float now byte
+  infmt was float now byte
+  resp was float now byte
+  svycod was float now byte
+  subscod was float now byte
+  empcod1 was float now int
+  empcod2 was float now int
+  empcod3 was float now int
+  tocan was float now int
+  inves was float now byte
+  rmk1 was float now byte
+  rmk2 was float now byte
+  rmke1 was float now byte
+  rmke2 was float now byte
+  nss was float now byte
+  nsc was float now byte
+  (5,801,488 bytes saved)
+
+. save "stata files\Level1.dta", replace
+(note: file stata files\Level1.dta not found)
+file stata files\Level1.dta saved
+
+. clear
+
+. infile using "dct files\Level2.dct" if level==2
+
+dictionary using "data\R71252L02.txt" 
+{
+_column(1)       crs     %3s  "Centre, Round"
+_column(4)       fsu     %5f  "FSU serial number"
+_column(9)       rnd     %2f  "Round"
+_column(11)      sch     %3f  "Schedule Number" 
+_column(14)      sample  %1f  "Sample"   
+_column(15)      sector  %1f  "Sector"
+_column(16)      NSSreg  %3f  "NSS-Region"  
+_column(19)      dist    %2f  "District"
+_column(21)      stratum %3f  "Stratum" 
+_column(24)      substr  %2f  "Sub stratum"
+_column(26)      subrnd  %1f  "Sub round"
+_column(27)      subsmp  %1f  "Sub sample" 
+_column(28)      fodsub  %4f  "FOD sub region"
+_column(32)      hgsub   %1f  "Hamlet group/ Sub-block no." 
+_column(33)      sstr    %1f  "Second Stage Stratum no."
+_column(34)      hh      %2f  "Sample household no."
+_column(36)      level   %2f  "Level"
+_column(38)      filler  %5f  "Filler"
+_column(43)      hhsize  %2f  "Household size"
+_column(45)      nic     %5f  "NIC-2008 five digit code"
+_column(50)      nco     %3f  "NCO-2004 three digit code" 
+_column(53)      hhtyp   %1f  "Household type"
+_column(54)      relgn   %1f  "Religion"
+_column(55)      sclgrp  %1f  "Social group "
+_column(56)      dispri  %1f  "Distance to nearest school having primary level classes"
+_column(57)      disupp  %1f  "Distance to nearest school having upper level classes"
+_column(58)      dissehi %1f  "Distance to nearest school having secondary level classes"
+_column(59)      hhcomp  %1f  "Whether household has computer"
+_column(60)      memint  %1f  "Whether any member has acces to internet"
+_column(61)      hhcoexp %8f  "Household's usual consumer expenditure (Rs.)"
+
+_column(127)     nss     %3f  "NSS"
+_column(130)     nsc     %3f  "NSC"
+_column(133)     mlt     %10f "MLT"
+}
+
+'19000-' cannot be read as a number for hhcoexp[12330]
+'X10' cannot be read as a number for nco[12578]
+'X10' cannot be read as a number for nco[12582]
+'X10' cannot be read as a number for nco[12584]
+'X10' cannot be read as a number for nco[12588]
+'X10' cannot be read as a number for nco[12590]
+'X10' cannot be read as a number for nco[14665]
+'X10' cannot be read as a number for nco[15119]
+'X10' cannot be read as a number for nco[15124]
+'X10' cannot be read as a number for nco[15727]
+'X10' cannot be read as a number for nco[15856]
+'X10' cannot be read as a number for nco[15860]
+'X99' cannot be read as a number for nco[15872]
+'X99' cannot be read as a number for nco[15874]
+'X10' cannot be read as a number for nco[15877]
+'X10' cannot be read as a number for nco[15878]
+'X10' cannot be read as a number for nco[15879]
+'X10' cannot be read as a number for nco[15880]
+'X10' cannot be read as a number for nco[15884]
+'X99' cannot be read as a number for nco[15910]
+'X10' cannot be read as a number for nco[15914]
+'X10' cannot be read as a number for nco[15920]
+'X10' cannot be read as a number for nco[15949]
+'X10' cannot be read as a number for nco[15950]
+'X10' cannot be read as a number for nco[15951]
+'X10' cannot be read as a number for nco[15958]
+'X10' cannot be read as a number for nco[15961]
+'X10' cannot be read as a number for nco[16411]
+'X99' cannot be read as a number for nco[37043]
+'X99' cannot be read as a number for nco[37046]
+'X99' cannot be read as a number for nco[37330]
+'X10' cannot be read as a number for nco[45803]
+'X10' cannot be read as a number for nco[45805]
+'X10' cannot be read as a number for nco[45920]
+'X99' cannot be read as a number for nco[47247]
+'X99' cannot be read as a number for nco[47631]
+'X10' cannot be read as a number for nco[48099]
+'X10' cannot be read as a number for nco[48105]
+'X10' cannot be read as a number for nco[48115]
+'X10' cannot be read as a number for nco[48120]
+'X10' cannot be read as a number for nco[48125]
+'X10' cannot be read as a number for nco[48129]
+'X10' cannot be read as a number for nco[48257]
+'X10' cannot be read as a number for nco[48258]
+'X10' cannot be read as a number for nco[48261]
+'X10' cannot be read as a number for nco[49800]
+'X10' cannot be read as a number for nco[49914]
+'....' cannot be read as a number for fodsub[63349]
+(65926 observations read)
+
+. compress
+  crs was float now byte
+  rnd was float now byte
+  sch was float now int
+  sample was float now byte
+  sector was float now byte
+  NSSreg was float now int
+  dist was float now byte
+  stratum was float now int
+  substr was float now byte
+  subrnd was float now byte
+  subsmp was float now byte
+  fodsub was float now int
+  hgsub was float now byte
+  sstr was float now byte
+  hh was float now byte
+  level was float now byte
+  filler was float now byte
+  hhsize was float now byte
+  nco was float now int
+  hhtyp was float now byte
+  relgn was float now byte
+  sclgrp was float now byte
+  dispri was float now byte
+  disupp was float now byte
+  dissehi was float now byte
+  hhcomp was float now byte
+  memint was float now byte
+  nss was float now byte
+  nsc was float now byte
+  (5,405,932 bytes saved)
+
+. save "stata files\Level2.dta", replace
+(note: file stata files\Level2.dta not found)
+file stata files\Level2.dta saved
+
+. clear
+
+. infile using "dct files\Level3.dct" if level==3
+
+dictionary using "data\R71252L03.txt" 
+{
+_column(1)       crs     %3s  "Centre, Round"
+_column(4)       fsu     %5f  "FSU serial number"
+_column(9)       rnd     %2f  "Round"
+_column(11)      sch     %3f  "Schedule Number" 
+_column(14)      sample  %1f  "Sample"   
+_column(15)      sector  %1f  "Sector"
+_column(16)      NSSreg  %3f  "NSS-Region"  
+_column(19)      dist    %2f  "District"
+_column(21)      stratum %3f  "Stratum" 
+_column(24)      substr  %2f  "Sub stratum"
+_column(26)      subrnd  %1f  "Sub round"
+_column(27)      subsmp  %1f  "Sub sample" 
+_column(28)      fodsub  %4f  "FOD sub region"
+_column(32)      hgsub   %1f  "Hamlet group/ Sub-block no." 
+_column(33)      sstr    %1f  "Second Stage Stratum no."
+_column(34)      hh      %2f  "Sample household no."
+_column(36)      level   %2f  "Level"
+_column(38)      filler  %3f  "Filler"
+_column(41)      persl   %2f  "Person serial no." 
+_column(43)      rth     %1f  "Relation to head"   
+_column(44)      sex     %1f  "Sex"
+_column(45)      age     %3f  "Age"  
+_column(48)      mrts    %1f  "Marital status"
+_column(49)      gened   %2f  "General education" 
+_column(51)      opcomp  %1f  "Able to operate computer"
+_column(52)      cmpwrd  %1f  "Able to use computer for word processing"
+_column(53)      intinfo %1f  "Able to use internet for searching desired information" 
+_column(54)      intmail %1f  "Able to use internet for sending e-mails"
+_column(55)      edatt   %1f  "Status of current educational attendance" 
+_column(56)      hostel  %1f  "Whether residents of student hostel"
+_column(57)      edenrol %2f  "Status of current educational enrolment"
+
+_column(127)     nss     %3f  "NSS"
+_column(130)     nsc     %3f  "NSC"
+_column(133)     mlt     %10f "MLT"
+}
+
+'0/' cannot be read as a number for persl[120990]
+'....' cannot be read as a number for fodsub[300718]
+'....' cannot be read as a number for fodsub[300719]
+'....' cannot be read as a number for fodsub[300720]
+(310827 observations read)
+
+. compress
+  crs was float now byte
+  rnd was float now byte
+  sch was float now int
+  sample was float now byte
+  sector was float now byte
+  NSSreg was float now int
+  dist was float now byte
+  stratum was float now int
+  substr was float now byte
+  subrnd was float now byte
+  subsmp was float now byte
+  fodsub was float now int
+  hgsub was float now byte
+  sstr was float now byte
+  hh was float now byte
+  level was float now byte
+  filler was float now byte
+  persl was float now byte
+  rth was float now byte
+  sex was float now byte
+  age was float now int
+  mrts was float now byte
+  gened was float now byte
+  opcomp was float now byte
+  cmpwrd was float now byte
+  intinfo was float now byte
+  intmail was float now byte
+  edatt was float now byte
+  hostel was float now byte
+  edenrol was float now byte
+  nss was float now byte
+  nsc was float now byte
+  (28,285,257 bytes saved)
+
+. save "stata files\Level3.dta", replace
+(note: file stata files\Level3.dta not found)
+file stata files\Level3.dta saved
+
+. clear
+
+. infile using "dct files\Level4.dct" if level==4
+
+dictionary using "data\R71252L04.txt" 
+{
+_column(1)       crs     %3s  "Centre, Round"
+_column(4)       fsu     %5f  "FSU serial number"
+_column(9)       rnd     %2f  "Round"
+_column(11)      sch     %3f  "Schedule Number" 
+_column(14)      sample  %1f  "Sample"   
+_column(15)      sector  %1f  "Sector"
+_column(16)      NSSreg  %3f  "NSS-Region"  
+_column(19)      dist    %2f  "District"
+_column(21)      stratum %3f  "Stratum" 
+_column(24)      substr  %2f  "Sub stratum"
+_column(26)      subrnd  %1f  "Sub round"
+_column(27)      subsmp  %1f  "Sub sample" 
+_column(28)      fodsub  %4f  "FOD sub region"
+_column(32)      hgsub   %1f  "Hamlet group/ Sub-block no." 
+_column(33)      sstr    %1f  "Second Stage Stratum no."
+_column(34)      hh      %2f  "Sample household no."
+_column(36)      level   %2f  "Level"
+_column(38)      filler  %3f  "Filler"
+_column(41)      persl   %2f  "Person serial no. (as in col. 1, block 4)" 
+_column(43)      age     %3f  "Age (as in col. 5, block 4)"   
+_column(46)      cfeecp  %8f  "Course fee (Rs.)"
+_column(54)      bsuexp  %8f  "Books, stationery and uniform (Rs.)"  
+_column(62)      trprexp %8f  "Transport (Rs.)"
+_column(70)      pricoxp %8f  "Private coaching (Rs.)" 
+_column(78)      oexp    %8f  "Other expenditure (Rs.)"
+_column(86)      totexp  %8f  "Total expenditure (Rs.): Items 3 to 7"
+_column(94)      plcehos %2f  "Place of hostel (state code)" 
+
+_column(127)     nss     %3f  "NSS"
+_column(130)     nsc     %3f  "NSC"
+_column(133)     mlt     %10f "MLT"
+}
+
+'....' cannot be read as a number for fodsub[90331]
+(93513 observations read)
+
+. compress
+  crs was float now byte
+  rnd was float now byte
+  sch was float now int
+  sample was float now byte
+  sector was float now byte
+  NSSreg was float now int
+  dist was float now byte
+  stratum was float now int
+  substr was float now byte
+  subrnd was float now byte
+  subsmp was float now byte
+  fodsub was float now int
+  hgsub was float now byte
+  sstr was float now byte
+  hh was float now byte
+  level was float now byte
+  filler was float now byte
+  persl was float now byte
+  age was float now byte
+  plcehos was float now byte
+  nss was float now byte
+  nsc was float now byte
+  (5,797,806 bytes saved)
+
+. save "stata files\Level4.dta", replace
+(note: file stata files\Level4.dta not found)
+file stata files\Level4.dta saved
+
+. clear
+
+. infile using "dct files\Level5.dct" if level==5
+
+dictionary using "data\R71252L05.txt" 
+{
+_column(1)       crs     %3s  "Centre, Round"
+_column(4)       fsu     %5f  "FSU serial number"
+_column(9)       rnd     %2f  "Round"
+_column(11)      sch     %3f  "Schedule Number" 
+_column(14)      sample  %1f  "Sample"   
+_column(15)      sector  %1f  "Sector"
+_column(16)      NSSreg  %3f  "NSS-Region"  
+_column(19)      dist    %2f  "District"
+_column(21)      stratum %3f  "Stratum" 
+_column(24)      substr  %2f  "Sub stratum"
+_column(26)      subrnd  %1f  "Sub round"
+_column(27)      subsmp  %1f  "Sub sample" 
+_column(28)      fodsub  %4f  "FOD sub region"
+_column(32)      hgsub   %1f  "Hamlet group/ Sub-block no." 
+_column(33)      sstr    %1f  "Second Stage Stratum no."
+_column(34)      hh      %2f  "Sample household no."
+_column(36)      level   %2f  "Level"
+_column(38)      filler  %3f  "Filler"
+_column(41)      persl   %2f  "Person serial no. (as in col. 1, block 4)" 
+_column(43)      age     %3f  "Age (as in col. 5, block 4)"   
+_column(46)      ageschl %2f  "Age at entry in school"
+_column(48)      curatt  %2f  "Level of current attendence"  
+_column(50)      crscod  %2f  "Course code"  
+_column(52)      duracd  %2f  "Duration of the current academic session of the course (in months)"
+_column(54)      repti   %1f  "Whether present class/ grade/ year of study is same as that of previous year" 
+_column(55)      typinst %1f  "Type of institution"
+_column(56)      natinst %1f  "Nature of institution"
+_column(57)      rsnpvt  %1f  "Reason for prefering private institution" 
+_column(58)      medium  %2f  "Medium of instruction" 
+_column(60)      langhm  %2f  "Language mainly spoken at home"   
+_column(62)      typcrs  %1f  "Type of course"
+_column(63)      freedu  %1f  "Whether education is free"  
+_column(64)      tufee   %1f  "Whether tution fee waived"
+_column(65)      ifwvamt %8f  "If waived, annual amount waived (Rs.)" 
+_column(73)      rsnwv   %1f  "If waived, reason for waiver"
+_column(74)      scshpst %1f  "Received scholarship/ stipend"
+_column(75)      scshamt %8f  "If received,  amount received (Rs.)" 
+_column(83)      typscsh %1f  "If received, type of scholarship"
+_column(84)      agency  %1f  "If received, agency" 
+_column(85)      textbok %1f  "Received textbooks" 
+_column(86)      stnry   %1f  "Received stationery"   
+_column(87)      mmm     %1f  "Is mid-day meal/ tiffin/ nutrition provided"
+_column(88)      mmmagny %1f  "If provided, agency"  
+_column(89)      trnpst  %1f  "Mode of transport"
+_column(90)      concesn %1f  "Whether concession received" 
+_column(91)      disinst %1f  "Distance of institution from place of residence" 
+_column(92)      chninst %1f  "Changed educational institution in last 1 year"
+_column(93)      pvtcoch %1f  "Taking private coaching"
+_column(94)      pppvtcc %1f  "Purpose of taking private coaching" 
+
+_column(127)     nss     %3f  "NSS"
+_column(130)     nsc     %3f  "NSC"
+_column(133)     mlt     %10f "MLT"
+}
+
+'....' cannot be read as a number for fodsub[90331]
+(93513 observations read)
+
+. compress
+  crs was float now byte
+  rnd was float now byte
+  sch was float now int
+  sample was float now byte
+  sector was float now byte
+  NSSreg was float now int
+  dist was float now byte
+  stratum was float now int
+  substr was float now byte
+  subrnd was float now byte
+  subsmp was float now byte
+  fodsub was float now int
+  hgsub was float now byte
+  sstr was float now byte
+  hh was float now byte
+  level was float now byte
+  filler was float now byte
+  persl was float now byte
+  age was float now byte
+  ageschl was float now byte
+  curatt was float now byte
+  crscod was float now byte
+  duracd was float now byte
+  repti was float now byte
+  typinst was float now byte
+  natinst was float now byte
+  rsnpvt was float now byte
+  medium was float now byte
+  langhm was float now byte
+  typcrs was float now byte
+  freedu was float now byte
+  tufee was float now byte
+  rsnwv was float now byte
+  scshpst was float now byte
+  typscsh was float now byte
+  agency was float now byte
+  textbok was float now byte
+  stnry was float now byte
+  mmm was float now byte
+  mmmagny was float now byte
+  trnpst was float now byte
+  concesn was float now byte
+  disinst was float now byte
+  chninst was float now byte
+  pvtcoch was float now byte
+  pppvtcc was float now byte
+  nss was float now byte
+  nsc was float now byte
+  (13,091,820 bytes saved)
+
+. save "stata files\Level5.dta", replace
+(note: file stata files\Level5.dta not found)
+file stata files\Level5.dta saved
+
+. clear
+
+. infile using "dct files\Level6.dct" if level==6
+
+dictionary using "data\R71252L06.txt"
+{
+_column(1)       crs     %3s  "Centre, Round"
+_column(4)       fsu     %5f  "FSU serial number"
+_column(9)       rnd     %2f  "Round"
+_column(11)      sch     %3f  "Schedule Number" 
+_column(14)      sample  %1f  "Sample"   
+_column(15)      sector  %1f  "Sector"
+_column(16)      NSSreg  %3f  "NSS-Region"  
+_column(19)      dist    %2f  "District"
+_column(21)      stratum %3f  "Stratum" 
+_column(24)      substr  %2f  "Sub stratum"
+_column(26)      subrnd  %1f  "Sub round"
+_column(27)      subsmp  %1f  "Sub sample" 
+_column(28)      fodsub  %4f  "FOD sub region"
+_column(32)      hgsub   %1f  "Hamlet group/ Sub-block no." 
+_column(33)      sstr    %1f  "Second Stage Stratum no."
+_column(34)      hh      %2f  "Sample household no."
+_column(36)      level   %2f  "Level"           
+_column(38)      filler  %3f  "Filler"          
+_column(41)      persl   %2f  "Person serial no. (as in col. 1, block 4)"               
+_column(43)      age     %3f  "Age (as in col. 5, block 4)"             
+_column(46)      erld    %1f  "Whether ever enrolled"           
+_column(47)      erldage %2f  "Ever enrolled- age at first enrollment in school (years)"                
+_column(49)      erllvl  %2f  "Ever enrolled- level"            
+_column(51)      erldedu %1f  "Ever enrolled- type of education"                
+_column(52)      erldcom %1f  "Ever enrolled- whether completed"                
+_column(53)      erlddis %2f  "Ever enrolled- grade/ class completed before discontinuance/ dropping out"          
+>      
+_column(55)      yrdis   %2f  "Ever enrolled- age when discontinued/ dropped out (years)"               
+_column(57)      lstinst %1f  "Ever enrolled- type of institution last attended"                
+_column(58)      rsnnvr  %2f  "Major reason for never enrolling"                
+        
+_column(127)     nss     %3f  "NSS"             
+_column(130)     nsc     %3f  "NSC"             
+_column(133)     mlt     %10f "MLT"             
+}
+
+(51657 observations read)
+
+. compress
+  crs was float now byte
+  rnd was float now byte
+  sch was float now int
+  sample was float now byte
+  sector was float now byte
+  NSSreg was float now int
+  dist was float now byte
+  stratum was float now int
+  substr was float now byte
+  subrnd was float now byte
+  subsmp was float now byte
+  fodsub was float now int
+  hgsub was float now byte
+  sstr was float now byte
+  hh was float now byte
+  level was float now byte
+  filler was float now byte
+  persl was float now byte
+  age was float now byte
+  erld was float now byte
+  erldage was float now byte
+  erllvl was float now byte
+  erldedu was float now byte
+  erldcom was float now byte
+  erlddis was float now byte
+  yrdis was float now byte
+  lstinst was float now byte
+  rsnnvr was float now byte
+  nss was float now byte
+  nsc was float now byte
+  (4,442,502 bytes saved)
+
+. save "stata files\Level6.dta", replace
+(note: file stata files\Level6.dta not found)
+file stata files\Level6.dta saved
+
+. clear
+
+. 
+. *Creating new variable called household ID in all the data files
+. use "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level1.dta", clear
+
+. egen hhid = concat (fsu hgsub sstr hh)
+
+. label variable hhid "Household Id"
+
+. destring hhid, replace
+hhid has all characters numeric; replaced as long
+
+. sort hhid
+
+. save "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level1.dta", replace
+file C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level1.dta saved
+
+. clear
+
+. 
+. use "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level2.dta", clear
+
+. egen hhid = concat (fsu hgsub sstr hh)
+
+. label variable hhid "Household Id"
+
+. destring hhid, replace
+hhid has all characters numeric; replaced as long
+
+. sort hhid
+
+. save "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level2.dta", replace
+file C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level2.dta saved
+
+. clear
+
+. 
+. use "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level3.dta", clear
+
+. egen hhid = concat (fsu hgsub sstr hh)
+
+. label variable hhid "Household Id"
+
+. destring hhid, replace
+hhid has all characters numeric; replaced as long
+
+. sort hhid
+
+. save "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level3.dta", replace
+file C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level3.dta saved
+
+. clear
+
+. 
+. use "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level4.dta", clear
+
+. egen hhid = concat (fsu hgsub sstr hh)
+
+. label variable hhid "Household Id"
+
+. destring hhid, replace
+hhid has all characters numeric; replaced as long
+
+. sort hhid
+
+. save "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level4.dta", replace
+file C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level4.dta saved
+
+. clear
+
+. 
+. use "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level5.dta", clear
+
+. egen hhid = concat (fsu hgsub sstr hh)
+
+. label variable hhid "Household Id"
+
+. destring hhid, replace
+hhid has all characters numeric; replaced as long
+
+. sort hhid
+
+. save "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level5.dta", replace
+file C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level5.dta saved
+
+. clear
+
+. 
+. use "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level6.dta", clear
+
+. egen hhid = concat (fsu hgsub sstr hh)
+
+. label variable hhid "Household Id"
+
+. destring hhid, replace
+hhid has all characters numeric; replaced as long
+
+. sort hhid
+
+. save "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level6.dta", replace
+file C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level6.dta saved
+
+. clear
+
+. 
+. *Merging required data files
+. use "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level1.dta", clear
+
+. merge m:m hhid using "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level2.
+> dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                            65,926  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge m:m hhid using "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level4.
+> dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        16,756
+        from master                    16,756  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                            93,513  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge m:m hhid using "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level5.
+> dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                        16,756
+        from master                    16,756  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                            93,513  (_merge==3)
+    -----------------------------------------
+
+. 
+. *Saving a new merged data file
+. save "C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level124&5.dta"
+file C:\Users\shanm\Desktop\1. Assignment-II_CMS\Group-II\Nss71_25.2\Datagen\stata files\Level124&5.dta saved
+
+. 
+end of do-file
+
+. set more off
+
+. log close
+      name:  <unnamed>
+       log:  C:\Users\shanm\Desktop\Assignment2MSM.log
+  log type:  text
+ closed on:  23 Nov 2018, 17:24:02
+-------------------------------------------------------------------------------------------------------------------
